@@ -1,75 +1,51 @@
 const data = [
   {
-    name: 'Adamy',
-    img: './img/Adamy.jpg',
+    name: 'Leonardo',
+    img: './img/students/Leonardo.jpg',
   },
   {
-    name: 'bruno',
-    img: './img/Bruno.jpg',
+    name: 'Joyce',
+    img: './img/students/Joyce.jpg',
   },
   {
-    name: 'Eric',
-    img: './img/Eric.jpg',
+    name: 'Giulia',
+    img: './img/students/Giulia.jpg',
   },
   {
     name: 'Fabio',
-    img: './img/Fabio.jpg',
+    img: './img/students/Fabio.jpg',
   },
   {
-    name: 'Felipe',
-    img: './img/Felipe.jpg',
+    name: 'Juliane',
+    img: './img/students/Juliane.jpg',
   },
   {
-    name: 'Filipe',
-    img: './img/Filipe.jpg',
+    name: 'Barbosa',
+    img: './img/students/Barbosa.jpg',
   },
   {
-    name: 'Gabriel',
-    img: './img/Gabriel.jpg',
+    name: 'Nykolle',
+    img: './img/students/Nykolle.jpg',
   },
   {
-    name: 'Grazi',
-    img: './img/Grazi.jpg',
+    name: 'Alex',
+    img: './img/students/Alex.jpg',
   },
   {
-    name: 'Guilherme',
-    img: './img/Guilherme.jpg',
+    name: 'Alisson',
+    img: './img/students/Alisson.jpg',
   },
   {
-    name: 'Lucas',
-    img: './img/Lucas.jpg',
+    name: 'Henrique',
+    img: './img/students/Henrique.jpg',
   },
   {
-    name: 'Marcelle',
-    img: './img/Marcelle.jpg',
+    name: 'Fernando',
+    img: './img/students/Fernando.jpg',
   },
   {
-    name: 'Marco',
-    img: './img/Marco.jpg',
-  },
-  {
-    name: 'Marcos',
-    img: './img/Marcos.jpg',
-  },
-  {
-    name: 'Millene',
-    img: './img/Millene.jpg',
-  },
-  {
-    name: 'Mônica',
-    img: './img/Monica.jpg',
-  },
-  {
-    name: 'Pedro',
-    img: './img/Pedro.jpg',
-  },
-  {
-    name: 'Rafael',
-    img: './img/Rafael.jpg',
-  },
-  {
-    name: 'Saulo',
-    img: './img/Saulo.jpg',
+    name: 'ViniVibe',
+    img: './img/students/ViniVibe.jpg',
   },
 ];
 
@@ -95,7 +71,7 @@ class Raffle {
     const cardElement = $(`
         <div class="card" attr-name="${card.name}">
             <div class="side back">
-                <img src="https://www.ironhack.com/assets/shared/logo.svg">
+                <img src="./img/logo/ironhack_logo.png">
             </div>
             <div class="side front">
                 <img src="${card.img}">
@@ -108,19 +84,23 @@ class Raffle {
   addPaired(name) {
     this.finalPairs.push(name);
 
-    if (this.finalPairs.length % 2 == 0) {
+    if (this.finalPairs.length % 2 === 0) {
       const chunks = _.chunk(this.finalPairs, 2);
       const pairs = $('#pairs');
       pairs.empty();
-      chunks.forEach(chunk => {
+      chunks.forEach((chunk, idx) => {
+        const firstPair = chunk[0];
+        const SecPair = chunk[1];
         const pair = $(`
                 <div class="pair">
-                <span>${chunk[0]}</span>
+                <span>${firstPair}</span>
                 - 
-                <span>${chunk[1]}</span>
+                <span>${SecPair}</span>
                 </div>
                 `);
         pairs.append(pair);
+
+        localStorage.setItem(`pair_${idx}`, `${firstPair}-${SecPair}`);
       });
     }
   }

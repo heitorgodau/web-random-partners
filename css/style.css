@@ -59,7 +59,8 @@ body {
 }
 
 .card .side.back img{
-    margin-top:40px;
+    /* margin-top:40px; */
+    width: 100%;
 }
 .card .side.front img{
     width: 100%;
